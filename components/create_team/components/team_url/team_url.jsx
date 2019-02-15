@@ -74,34 +74,34 @@ export default class TeamUrl extends React.PureComponent {
 
         if (!name) {
             this.setState({nameError: (
-                <FormattedMessage
-                    id='create_team.team_url.required'
-                    defaultMessage='This field is required'
-                />),
+                    <FormattedMessage
+                        id='create_team.team_url.required'
+                        defaultMessage='This field is required'
+                    />),
             });
             return;
         }
 
         if (cleanedName.length < Constants.MIN_TEAMNAME_LENGTH || cleanedName.length > Constants.MAX_TEAMNAME_LENGTH) {
             this.setState({nameError: (
-                <FormattedMessage
-                    id='create_team.team_url.charLength'
-                    defaultMessage='Name must be {min} or more characters up to a maximum of {max}'
-                    values={{
-                        min: Constants.MIN_TEAMNAME_LENGTH,
-                        max: Constants.MAX_TEAMNAME_LENGTH,
-                    }}
-                />),
+                    <FormattedMessage
+                        id='create_team.team_url.charLength'
+                        defaultMessage='Name must be {min} or more characters up to a maximum of {max}'
+                        values={{
+                            min: Constants.MIN_TEAMNAME_LENGTH,
+                            max: Constants.MAX_TEAMNAME_LENGTH,
+                        }}
+                    />),
             });
             return;
         }
 
         if (cleanedName !== name || !urlRegex.test(name)) {
             this.setState({nameError: (
-                <FormattedMessage
-                    id='create_team.team_url.regex'
-                    defaultMessage="Use only lower case letters, numbers and dashes. Must start with a letter and can't end in a dash."
-                />),
+                    <FormattedMessage
+                        id='create_team.team_url.regex'
+                        defaultMessage="Use only lower case letters, numbers and dashes. Must start with a letter and can't end in a dash."
+                    />),
             });
             return;
         }
@@ -109,10 +109,10 @@ export default class TeamUrl extends React.PureComponent {
         for (let index = 0; index < Constants.RESERVED_TEAM_NAMES.length; index++) {
             if (cleanedName.indexOf(Constants.RESERVED_TEAM_NAMES[index]) === 0) {
                 this.setState({nameError: (
-                    <FormattedMarkdownMessage
-                        id='create_team.team_url.taken'
-                        defaultMessage='This URL [starts with a reserved word](!https://docs.mattermost.com/help/getting-started/creating-teams.html#team-url) or is unavailable. Please try another.'
-                    />),
+                        <FormattedMarkdownMessage
+                            id='create_team.team_url.taken'
+                            defaultMessage='This URL [starts with a reserved word](!https://docs.mattermost.com/help/getting-started/creating-teams.html#team-url) or is unavailable. Please try another.'
+                        />),
                 });
                 return;
             }
@@ -127,10 +127,10 @@ export default class TeamUrl extends React.PureComponent {
 
         if (exists) {
             this.setState({nameError: (
-                <FormattedMessage
-                    id='create_team.team_url.unavailable'
-                    defaultMessage='This URL is taken or unavailable. Please try another.'
-                />),
+                    <FormattedMessage
+                        id='create_team.team_url.unavailable'
+                        defaultMessage='This URL is taken or unavailable. Please try another.'
+                    />),
             });
             this.setState({isLoading: false});
             return;
@@ -209,6 +209,7 @@ export default class TeamUrl extends React.PureComponent {
                                         </span>
                                     </OverlayTrigger>
                                     <input
+                                        id='teamName'
                                         type='text'
                                         ref='name'
                                         className='form-control'
@@ -252,6 +253,7 @@ export default class TeamUrl extends React.PureComponent {
                     </ul>
                     <div className='margin--extra'>
                         <Button
+                            id='submitTeamUrl'
                             type='submit'
                             bsStyle='primary'
                             disabled={this.state.isLoading}
