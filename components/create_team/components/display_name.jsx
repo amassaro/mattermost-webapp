@@ -42,22 +42,22 @@ export default class TeamSignupDisplayNamePage extends React.PureComponent {
         var displayName = ReactDOM.findDOMNode(this.refs.name).value.trim();
         if (!displayName) {
             this.setState({nameError: (
-                    <FormattedMessage
-                        id='create_team.display_name.required'
-                        defaultMessage='This field is required'
-                    />),
+                <FormattedMessage
+                    id='create_team.display_name.required'
+                    defaultMessage='This field is required'
+                />),
             });
             return;
         } else if (displayName.length < Constants.MIN_TEAMNAME_LENGTH || displayName.length > Constants.MAX_TEAMNAME_LENGTH) {
             this.setState({nameError: (
-                    <FormattedMessage
-                        id='create_team.display_name.charLength'
-                        defaultMessage='Name must be {min} or more characters up to a maximum of {max}. You can add a longer team description later.'
-                        values={{
-                            min: Constants.MIN_TEAMNAME_LENGTH,
-                            max: Constants.MAX_TEAMNAME_LENGTH,
-                        }}
-                    />),
+                <FormattedMessage
+                    id='create_team.display_name.charLength'
+                    defaultMessage='Name must be {min} or more characters up to a maximum of {max}. You can add a longer team description later.'
+                    values={{
+                        min: Constants.MIN_TEAMNAME_LENGTH,
+                        max: Constants.MAX_TEAMNAME_LENGTH,
+                    }}
+                />),
             });
             return;
         }
